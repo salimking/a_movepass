@@ -1,0 +1,93 @@
+{% extends 'admin/base/base.html' %}
+{% block title %} {{ user.name }} | Movement Pass BD {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+        <div class="card shadow mb-4">
+            <div class="row " style="padding: 10px;">
+                <div class="col-11 mx-auto">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3> User Information</h3>
+                            <hr>
+                            <img src="{{ user.image.url }}" alt="" style="width: 150px; margin-bottom: 10px; border-radius: 10px;">
+                            <br>
+                            
+                            <table>
+                                <tr>
+                                    <td><p><strong> USER ID </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.id }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Name </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p> <strong>{{ user.name }}</strong></p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> DOB </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.date_of_birth }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Joined </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.created_at }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Mobile </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.user.username }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> District </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.district.name }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> Thana </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.thana }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> ID Name </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.id_name }}</p></td>  
+                                </tr>
+                                <tr>
+                                    <td><p><strong> ID Number </strong></p></td>
+                                    <td><p><strong>:</strong></p></td>
+                                    <td><p>{{ user.id_number }}</p></td>  
+                                </tr>
+                            </table>
+
+                            
+                        </div>
+                        <div class="col-6">
+                            <h3> Movement Pass</h3>
+                            <hr>
+                            {% if user_pass %}
+                            <table>
+                                {% for p in user_pass %}
+                                <tr>
+                                    <div style="background-color:white; border-radius: 10px; margin-bottom:10px;padding: 10px;box-shadow: 1px 2px 5px 1px #dedbdb;">
+                                        <h6 style="color:black">Track ID : <strong>{{ p.id }}</strong></h6>
+                                        <p> From : {{ p.from_m }}-To : {{ p.to_m }} <a href="{% url 'single_pass' p.id %}"> View Pass</a> <i class="fas fa-caret-square-right"></i></p>
+                                    </div>  
+                                </tr>
+                                {% endfor %}
+                            </table>
+                                {% else %}
+                                <h5> This User has not submitted any Movement Pass yet</h5>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
